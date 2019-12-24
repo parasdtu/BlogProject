@@ -9,7 +9,7 @@ class UserInfoForm(forms.ModelForm):
 
     class Meta():
         model=User
-        fields=('username','password','email')
+        fields=('first_name','last_name','username','password','email')
 
     def clean(self):
         all_cleaned_data=super().clean()
@@ -24,3 +24,13 @@ class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model=UserProfileInfo
         fields=('profile_pic',)
+
+class NewPostForm(forms.ModelForm):
+    class Meta():
+        model=NewPostModel
+        fields=('author','text','title')
+
+class CommentForm(forms.ModelForm):
+    class Meta():
+        model=CommentModel
+        fields=('author','text')

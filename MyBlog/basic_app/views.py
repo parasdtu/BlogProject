@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
+from django.views.generic import View,DetailView,
 # Create your views here.
 def index(request):
     return render(request,'basic_app/basic_app.html')
@@ -60,9 +61,17 @@ def user_login(request):
         else:
             return HttpResponse("Invalid login details!")
     else:
-        return render(request,'basic_app/login.html')
+        return render(request,'basic_app/profile_page.html')
 
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+class CommentView(DetailView):
+    model=model.CommentModel
+    template_name='basic_app/comment_page.html'
+
+class NewPostView(DetailView):
+    model=model.NewPostModel
+    template_name='basic_app/new_post_page.html'
