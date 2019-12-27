@@ -19,6 +19,8 @@
 
         {% if user.is_authenticated %}
           <li class="navbar-link"> <a href="{% url "user_logout" %}">Logout</a></li>
+          <li class="navbar-link"> <a href="{% url "index" %}">New Post</a></li>
+          <li class="navbar-link"> <a href="{% url "index" %}">Drafts</a></li>
         {% else %}
           <li class="navbar-link"> <a href="{% url "basic_app:user_login" %}">Login</a></li>
         {% endif %}
