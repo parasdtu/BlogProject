@@ -1,27 +1,42 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
+from django.utils import timezone
+from django.urls import reverse
 
-class UserProfileInfo(models.Model):
-
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
-    profile_pic=models.ImageField(upload_to='profile_pics',blank=True)
-
-    def __str__(self):
-        return self.user.first_name
-
-class NewPostModel(models.Model):
-    author=models.ForeignKey(UserProfileInfo,related_name='posts',on_delete=models.CASCADE)
+class Post(models.Model):
+    author=models.ForeignKey('auth.User',on_delete=models.CASCADE)
     title=models.CharField(max_length=256)
-    text=models.CharField(max_length=2048)
+    text=models.TextField()
+    create_date=models.DateTimeField(default=timezone.now())
+    published_date=models.DateTimeField(blank=True,null=True)
+
+    def publish(self):
+        self.published_date=timezone.now()
+        self.save()
+
+    def approve_comments(self):
+        return self.comments.filter(approved_comments=True)
+
+    def get_absolute_url(self):
+        return reverse("post_detail",kwargs={'pk':self.pk})
 
     def __str__(self):
         return self.title
 
-class CommentModel(models.Model):
-    title=models.ForeignKey(NewPostModel,related_name='comments',on_delete=models.CASCADE)
+
+class Comment(models.Model):
+    post=models.ForeignKey('basic_app.Post',related_name='comments',on_delete=models.CASCADE)
     author=models.CharField(max_length=256)
-    text=models.CharField(max_length=2048)
+    text=models.TextField()
+    create_date=models.DateTimeField(default=timezone.now())
+    approved_comments=models.BooleanField(default=False)
+
+    def approve(self):
+        self.approved_comment=True
+        self.save()
+
+    def get_absolute_url(self):
+        return reverse('post_list')
 
     def __str__(self):
-        return self.author
+        return self.text

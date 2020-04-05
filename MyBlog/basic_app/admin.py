@@ -1,6 +1,5 @@
 from django.contrib import admin
-from basic_app.models import UserProfileInfo,CommentModel,NewPostModel
+from basic_app.models import Post,Comment
 # Register your models here.
-admin.site.register(UserProfileInfo)
-admin.site.register(NewPostModel)
-admin.site.register(CommentModel)
+admin.site.register(Post)
+admin.site.register(Comment)

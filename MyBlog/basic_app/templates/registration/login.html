@@ -1,0 +1,21 @@
+{% extends 'basic_app/base.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h2>Please Login</h2>
+  <h3>(Must be a SuperUser, check with admin)</h3>
+
+  {% if form.errors %}
+  <p>Incorrect username and password!</p>
+  {% endif %}
+
+  <form action="index.html" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="" class="btn btn-primary" value="Login">
+    <input type="hidden" name="text" value="{{next}}">
+  </form>
+
+</div>
+{% endblock %}
