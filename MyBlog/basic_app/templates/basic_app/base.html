@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
+<html>
+    <head>
+        <title>Blog Project</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- Boostrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <!-- Medium Style editor -->
-    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
-    <link href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" rel="stylesheet" type="text/css" media="screen" charset="utf-8">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!-- custom css -->
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <!-- {# MEDIUM STYLE EDITOR#} -->
+        <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
 
-    <!-- fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Sen&display=swap" rel="stylesheet">
 
-  </head>
-  <body>
+        <!-- {# Custom CSS#} -->
+        <!-- <link rel="stylesheet" href="{% static 'css/blog.css' %}"> -->
 
-    <nav class="navbar navbar-default techfont custom-navbar">
-      <div class="container">
-        <ul class="nav navbar-nav">
-          <li><a class='navbar-brand bigbrand' href="{% url 'post_list' %}">My Blog</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="https://www.github.com">Github</a></li>
-        </ul>
+        <!-- {# Fonts#} -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Css files -->
+        <link rel="stylesheet" href="{% static 'css/new_style.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'css/cards_style.css' %}"> -->
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-        <ul class="nav navbar-nav navbar-right">
+<body class='loader'>
+
+
+  <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">InCampus</label>
+        <ul>
+          <li><a class="active" href="{% url 'post_list' %}" style="text-decoration: none;">Home</a></li>
+          <li><a href="{% url 'about'%}" style="text-decoration: none;">About</a></li>
           {% if user.is_authenticated %}
+          <li><a href="{% url 'post_new' %}" style="text-decoration: none;">New Post</a></li>
+          <li><a href="{% url 'post_draft_list' %}" style="text-decoration: none;">Drafts</a></li>
+          <li><a href="{% url 'logout' %}" style="text-decoration: none;">Logout</a></li>
           <li>
-            <a href="{% url 'post_new' %}">New Post</a>
+            <a style="text-decoration: none;">Welcome: {{ user.username }}</a>
           </li>
-          <li>
-            <a href="{% url 'post_draft_list' %}">Drafts</a>
-          </li>
-          <li>
-            <a href="{% url 'logout' %}">Log out</a>
-          </li>
-          <li>
-            <a>Welcome: {{user.username}}</a>
-          </li>
-
           {% else %}
-          <li><a class="nav navbar-right" href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span></a></li>
-
+          <li><a href="{% url 'login' %}" style="text-decoration: none;" ><span class="glyphicon glyphicon-user"></span></a></li>
           {% endif %}
-
         </ul>
+</nav>
 
-      </div>
-    </nav>
-
-    <div class="content container">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="blog_posts">
-            {% block content %}
-            {%  endblock %}
-          </div>
-
+  {# The actual blog posts#}
+  <section>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                  <div class="blog_posts">
+                    {% block content %}
+                    {% endblock %}
+                  </div>
+                </div>
+            </div>
         </div>
-      </div>
+  </section>
 
-    </div>
+<!-- {# SCRIPTS#} -->
 
+<!-- <script type="text/javascript" src="{% static 'js/blog.js' %}"></script> -->
 
-  </body>
+</body>
 </html>

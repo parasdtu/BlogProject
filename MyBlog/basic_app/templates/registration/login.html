@@ -10,7 +10,7 @@
   <p>Incorrect username and password!</p>
   {% endif %}
 
-  <form action="index.html" method="POST">
+  <form action="{% url 'login' %}?next={{ request.GET.next }}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" name="" class="btn btn-primary" value="Login">

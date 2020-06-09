@@ -9,6 +9,7 @@ class Post(models.Model):
     text=models.TextField()
     create_date=models.DateTimeField(default=timezone.now())
     published_date=models.DateTimeField(blank=True,null=True)
+    blog_pic=models.ImageField(upload_to='blog_pics/',blank=True,default='blog_pics/django-logo-negative.png')
 
     def publish(self):
         self.published_date=timezone.now()
@@ -32,7 +33,7 @@ class Comment(models.Model):
     approved_comments=models.BooleanField(default=False)
 
     def approve(self):
-        self.approved_comment=True
+        self.approved_comments=True
         self.save()
 
     def get_absolute_url(self):
