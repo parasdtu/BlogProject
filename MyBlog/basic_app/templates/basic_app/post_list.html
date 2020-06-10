@@ -1,23 +1,22 @@
 {% extends 'basic_app/base.html' %}
 
 {% block content %}
-<div class="centerstage">
+  <div class="cards">
     {% for post in post_list %}
-
-    <div class="cards">
+    <div class="card__container">
       <div class="card">
         <img class="card__image" src="{{ post.blog_pic.url }}" alt="">
         <div class="card__content">
+          <h1>
+            <a href="{% url 'post_detail' pk=post.pk %}" style="text-decoration: none; text-transform: uppercase;" >{{ post.title }}</a>
+          </h1>
           <p>
-            <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
-          </p>
-          <p>
-            {{ post.text|safe|linebreaksbr }}
+            {{ post.snippet|safe|linebreaksbr }}
           </p>
         </div>
         <div class="card__info">
           <div>
-            <i class="material-icons">{{ post.published_date|date:"D M Y"}}</i>310
+            <i class="material-icons">{{ post.published_date|date:"D M Y"}}</i>
           </div>
           <div>
             <a href="{% url 'post_detail' pk=post.pk %}" class="card__link">Comments: {{ post.approve_comments.count }}</a>
@@ -36,5 +35,5 @@
             <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
         </div> -->
     {% endfor %}
-</div>
+    </div>
 {% endblock %}
