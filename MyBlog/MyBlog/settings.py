@@ -27,7 +27,7 @@ SECRET_KEY = 'c4qoj2x!17(9p)&jkuzv=rv$#!y%4x6a)t2@hok55g4hrm=$zs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['segmentree.pythonanywhere.com']
 
 
 # Application definition
