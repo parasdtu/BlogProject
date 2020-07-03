@@ -25,7 +25,7 @@ class Post(models.Model):
         return self.title
 
     def snippet(self):
-        return self.text[:50]
+        return self.text[:80]
 
 class Comment(models.Model):
     post=models.ForeignKey('basic_app.Post',related_name='comments',on_delete=models.CASCADE)

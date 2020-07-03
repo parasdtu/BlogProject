@@ -1,11 +1,19 @@
 {% extends 'basic_app/base.html' %}
 
 {% block content %}
-
-        <h1 class='posttitle loader'>{{ post.title }}</h1>
+  <style>
+  .image{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+  }
+  </style>
+        <h1 class='posttitle loader' style="font-family: 'Archivo', sans-serif;font-size: 45px; text-align: center;">{{ post.title }}</h1>
 
         {% if post.published_date %}
-            <div class="date postdate">
+        <img class="image" src="{{ post.blog_pic.url }}" width="240">
+            <div class="date postdate" style="font-family: 'Archivo', sans-serif;">
                 {{ post.published_date }}
             </div>
 
@@ -13,8 +21,8 @@
             <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
         {% endif %}
 
-      <p class='postcontent' >{{ post.text|safe|linebreaksbr }}</p>
-      <img src="{{ post.blog_pic.url }}" width="240">
+      <h4 class='postcontent' style="font-family: 'Archivo', sans-serif;font-size: 20px;" >{{ post.text|safe|linebreaksbr }}</h4>
+
 
       {% if user.is_authenticated %}
           <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -27,9 +35,16 @@
   <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
   <div class="container">
 
+{% for comment in post.comments.all %}
+
+<h5>Posted by: <strong>{{ comment.author }}</strong></h5>
+<p>{{ comment.text|safe|linebreaks }}</p>
+
+{% endfor %}
 
   {% for comment in post.comments.all %}
   <br>
+
       {% if user.is_authenticated or comment.approved_comment %}
 
               {{ comment.created_date }}

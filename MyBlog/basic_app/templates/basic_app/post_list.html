@@ -5,12 +5,12 @@
     {% for post in post_list %}
     <div class="card__container">
       <div class="card">
-        <img class="card__image" src="{{ post.blog_pic.url }}" alt="">
+        <a href="{% url 'post_detail' pk=post.pk %}"><img class="card__image"  src="{{ post.blog_pic.url }}" alt=""></a>
         <div class="card__content">
-          <h1>
-            <a href="{% url 'post_detail' pk=post.pk %}" style="text-decoration: none; text-transform: uppercase;" >{{ post.title }}</a>
-          </h1>
-          <p>
+          <h3 style="font-family: 'Archivo', sans-serif;font-size:  28px; text-align: center;">
+            {{ post.title }}
+          </h3>
+          <p style="font-family: 'Archivo', sans-serif;font-size: 20px;">
             {{ post.snippet|safe|linebreaksbr }}
           </p>
         </div>

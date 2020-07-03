@@ -18,6 +18,8 @@
         <!-- <link rel="stylesheet" href="{% static 'css/blog.css' %}"> -->
 
         <!-- {# Fonts#} -->
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Css files -->
@@ -34,17 +36,17 @@
       </label>
       <label class="logo">InCampus</label>
         <ul>
-          <li><a class="active" href="{% url 'post_list' %}" style="text-decoration: none;">Home</a></li>
-          <li><a href="{% url 'about'%}" style="text-decoration: none;">About</a></li>
+          <li><a class="nav-tag"class="active" href="{% url 'post_list' %}" style="text-decoration: none;">Home</a></li>
+          <li><a class="nav-tag"href="{% url 'about'%}" style="text-decoration: none;">About</a></li>
           {% if user.is_authenticated %}
-          <li><a href="{% url 'post_new' %}" style="text-decoration: none;">New Post</a></li>
-          <li><a href="{% url 'post_draft_list' %}" style="text-decoration: none;">Drafts</a></li>
-          <li><a href="{% url 'logout' %}" style="text-decoration: none;">Logout</a></li>
+          <li><a class="nav-tag"href="{% url 'post_new' %}" style="text-decoration: none;">New Post</a></li>
+          <li><a class="nav-tag"href="{% url 'post_draft_list' %}" style="text-decoration: none;">Drafts</a></li>
+          <li><a class="nav-tag"href="{% url 'logout' %}" style="text-decoration: none;">Logout</a></li>
           <li>
-            <a style="text-decoration: none;">Welcome: {{ user.username }}</a>
+            <a class="nav-tag"style="text-decoration: none;">Welcome: {{ user.username }}</a>
           </li>
           {% else %}
-          <li><a href="{% url 'login' %}" style="text-decoration: none;" ><span class="glyphicon glyphicon-user"></span></a></li>
+          <li><a class="nav-tag"href="{% url 'login' %}" style="text-decoration: none;" ><span class="glyphicon glyphicon-user"></span></a></li>
           {% endif %}
         </ul>
 </nav>
