@@ -7,6 +7,7 @@ from django.views.generic import View,TemplateView,DetailView,CreateView,UpdateV
 from basic_app.models import Post,Comment
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views
+from django.http import HttpResponseRedirect
 
 class AboutView(TemplateView):
     template_name='about.html'
@@ -82,3 +83,13 @@ def comment_remove(request,pk):
     post_pk=comment.post.pk ####??????????
     comment.delete()
     return redirect('post_detail',pk=post_pk)
+
+# def subscription_approve(request):
+#     if request.method=="POST":
+#         form=SubscriptionForm(request.POST)
+#         if form.is_valid:
+#             form.save()
+#             return HttpResponseRedirect(request.path_info)
+#     else:
+#         form=SubscriptionForm()
+#         return render(request,'basic_app/post_detail.html',{'form':form})

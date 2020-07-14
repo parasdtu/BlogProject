@@ -43,3 +43,5 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+# class Subscription(models.Model):
+#     mail_id=models.EmailField(max_length=254)
