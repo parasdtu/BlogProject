@@ -737,6 +737,9 @@ section{
   text-decoration: underline;
 }
 
+
+
+
 @media screen and (max-width: 900px) {
   footer{
     position: relative;
@@ -752,3 +755,15 @@ section{
     margin: 5px 0;
   }
 }
+.columns{
+  text-align: center;
+  color: white;
+  margin-bottom: 0px;
+}
+
+@media (min-width: 768px) {
+  .columns{
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+} 
