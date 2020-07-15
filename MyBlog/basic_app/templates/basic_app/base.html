@@ -504,7 +504,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   text-align: center;
   color: white;
   margin-bottom: 20px;}
-} 
+}
 .loader{
     overflow-x: hidden;
 }
@@ -540,7 +540,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
       <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Leno</a> -->
 
       <!-- Image Logo -->
-      <a class="navbar-brand logo-image" href="{% url 'post_list' %}"><img src="media/blog_pics/logo.png" style="width: 50%;height: auto;" alt="alternative"></a>
+      <a class="navbar-brand logo-image" href="{% url 'post_list' %}"><img src="{% static "logos/logo.png" %}" style="width: 50%;height: auto;" alt="alternative"></a>
 
       <!-- Mobile Menu Toggle Button -->
       <button
@@ -586,18 +586,18 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
         <span class="nav-item social-icons">
           <span class="fa-stack" style="text-align: center;">
             <a href="https://m.facebook.com/InCampus.in/">
-              <img src="media/blog_pics/facebook.png" style="width: 55%;height: auto;vertical-align: sub;" alt="">
+              <img src="{% static "logos/facebook.png" %}" style="width: 55%;height: auto;vertical-align: sub;" alt="">
             </a>
           </span>
           <span class="fa-stack" style="text-align: center;">
             <a href="https://www.linkedin.com/company/incampusinc/about/">
-                <img src="media/blog_pics/linkedin.png" style="width: 55%;height: auto;vertical-align: sub;" alt="">
+                <img src="{% static "logos/linkedin.png" %}" style="width: 55%;height: auto;vertical-align: sub;" alt="">
             </a>
           </span>
         </span>
       </div>
     </nav>
-        
+
     <!-- <div class="topnav" id="myTopnav">
         <a class="navbar-brand" href="#">
             <img src="../../../media/white-logo.png" height="50" width="100" class="image-fluid">
@@ -878,7 +878,7 @@ if (x.className === "topnav") {
               <h4>Social Media</h4>
               <span class="fa-stack" style="margin-right: 20px;">
                 <a href="https://m.facebook.com/InCampus.in/">
-                  <img src="media/blog_pics/facebook.png" style="width: 70%;height: auto;" alt="">
+                  <img src="{% static "logos/facebook.png" %}" style="width: 70%;height: auto;" alt="">
                 </a>
               </span>
               <!--
@@ -899,12 +899,12 @@ if (x.className === "topnav") {
 -->
               <span class="fa-stack" style="margin-right: 20px;">
                 <a href="https://www.instagram.com/official_incampus/">
-                  <img src="media/blog_pics/instagram.png" style="width: 70%;height: auto;" alt="">
+                  <img src="{% static "logos/instagram.png" %}" style="width: 70%;height: auto;" alt="">
                 </a>
               </span>
               <span class="fa-stack" style="margin-right: 20px;">
                 <a href="https://www.linkedin.com/company/incampusinc/about/">
-                  <img src="media/blog_pics/linkedin.png" style="width: 70%;height: auto;" alt="">
+                  <img src="{% static "logos/linkedin.png" %}" style="width: 70%;height: auto;" alt="">
               </a>
               </span>
             </div>
