@@ -35,7 +35,6 @@
         <h1 class='posttitle loader postHeader'>{{ post.title }}</h1>
 
         {% if post.published_date %}
-        <img class="image" src="{{ post.blog_pic.url }}">
             <div class="date postdate" style="font-family: 'Archivo', sans-serif;">
                 {{ post.published_date }}
             </div>
@@ -43,8 +42,21 @@
         {% else %}
             <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
         {% endif %}
+        <img class="image" src="{{ post.blog_pic_1.url }}">
         <div class="blogPost">
-            <p class='postcontent postText font-weight-normal'>{{ post.text|safe|linebreaksbr }}</p>
+            <p class='postcontent postText font-weight-normal'>{{ post.text_1|safe|linebreaksbr }}</p>
+        </div>
+        {% if post.blog_pic_2 %}
+          <img class="image" src="{{ post.blog_pic_2.url }}">
+        {% endif %}
+        <div class="blogPost">
+            <p class='postcontent postText font-weight-normal'>{{ post.text_2|safe|linebreaksbr }}</p>
+        </div>
+        {% if post.blog_pic_3 %}
+          <img class="image" src="{{ post.blog_pic_3.url }}">
+        {% endif %}
+        <div class="blogPost">
+            <p class='postcontent postText font-weight-normal'>{{ post.text_3|safe|linebreaksbr }}</p>
         </div>
 
       {% if user.is_authenticated %}

@@ -2,14 +2,20 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
-
+# ,default='blog_pics/django-logo-negative.png'
 class Post(models.Model):
     author=models.ForeignKey('auth.User',on_delete=models.CASCADE)
     title=models.CharField(max_length=256)
-    text=models.TextField()
+    blogger_name=models.CharField(max_length=256,default="BloggerName")
+    blog_pic_1=models.ImageField(upload_to='blog_pics/',blank=True,default='blog_pics/django-logo-negative.png')
+    text_1=models.TextField(default="")
+    blog_pic_2=models.ImageField(upload_to='blog_pics/',blank=True)
+    text_2=models.TextField(default="")
+    blog_pic_3=models.ImageField(upload_to='blog_pics/',blank=True)
+    text_3=models.TextField(default="")
     create_date=models.DateTimeField(default=timezone.now())
     published_date=models.DateTimeField(blank=True,null=True)
-    blog_pic=models.ImageField(upload_to='blog_pics/',blank=True,default='blog_pics/django-logo-negative.png')
+    # blog_pic=models.ImageField(upload_to='blog_pics/',blank=True,default='blog_pics/django-logo-negative.png')
 
     def publish(self):
         self.published_date=timezone.now()
@@ -25,7 +31,7 @@ class Post(models.Model):
         return self.title
 
     def snippet(self):
-        return self.text[:80]
+        return self.text_1[:80]
 
 class Comment(models.Model):
     post=models.ForeignKey('basic_app.Post',related_name='comments',on_delete=models.CASCADE)

@@ -568,25 +568,17 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
             <a class="nav-link page-scroll" href="{% url 'about'%}">ABOUT</a>
           </li>
           {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link page-scroll" href="{% url 'post_new' %}">New Post</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link page-scroll" href="{% url 'post_draft_list' %}">Drafts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link page-scroll" href="{% url 'logout' %}">Logout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link page-scroll">Welcome: {{ user.username }}</a>
-          </li>
+          <a class="nav-link" href="{% url 'post_new' %}">NEW POST</a>
+          <a class="nav-link" href="{% url 'post_draft_list' %}">DRAFTS</a>
+          <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+          <a class="nav-link">WELCOME: {{ user.username }}</a>
 
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link page-scroll" href="{% url 'login' %}">LOGIN</a>
-        </li>
+          {% else %}
+          <a class="nav-link" href="{% url 'login' %}">
+              LOGIN
+          </a>
+          {% endif %}
 
-        {% endif %}
           <!-- Dropdown Menu -->
           <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle page-scroll" href="#details" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">DETAILS</a>
@@ -635,7 +627,6 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
         <a class="nav-tag" href="{% url 'login' %}">
             <span class="glyphicon glyphicon-user"></span>
         </a>
-
         {% endif %}
 
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">

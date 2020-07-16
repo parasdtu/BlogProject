@@ -5,7 +5,10 @@
     {% for post in post_list %}
     <div class="card__container">
       <div class="card" >
-        <a href="{% url 'post_detail' pk=post.pk %}"><img class="card__image"  src="{{ post.blog_pic.url }}" alt=""></a>
+        {% if post.blog_pic_1 %}
+          <a href="{% url 'post_detail' pk=post.pk %}"><img class="card__image"  src="{{ post.blog_pic_1.url }}" alt=""></a>
+        {% endif %}
+
         <div class="card__content">
           <h3 style="font-family: 'Archivo', sans-serif;font-size:  28px; text-align: center;">
             {{ post.title }}
@@ -19,11 +22,12 @@
             <i class="material-icons">{{ post.published_date|date:"D M Y"}}</i>
           </div>
           <div>
-            <a href="{% url 'post_detail' pk=post.pk %}" class="card__link">Comments: {{ post.approve_comments.count }}</a>
+            <p> by- {{ post.blogger_name }}</p>
           </div>
         </div>
       </div>
     </div>
+
     <!-- break -->
 
         <!-- <div class="post">
