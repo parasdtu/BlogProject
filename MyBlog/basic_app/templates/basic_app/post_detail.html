@@ -32,17 +32,21 @@
 
 
   </style>
-        <h1 class='posttitle loader postHeader'>{{ post.title }}</h1>
+        <h1 class="posttitle loader postHeader" style="text-align: center; vertical-align: middle;">{{ post.title }}</h1>
 
         {% if post.published_date %}
             <div class="date postdate" style="font-family: 'Archivo', sans-serif;">
-                {{ post.published_date }}
             </div>
 
         {% else %}
             <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
         {% endif %}
         <img class="image" src="{{ post.blog_pic_1.url }}">
+        {% if post.published_date %}
+            <div class="date postdate" style="font-family: 'Archivo', sans-serif;">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
         <div class="blogPost">
             <p class='postcontent postText font-weight-normal'>{{ post.text_1|safe|linebreaksbr }}</p>
         </div>
@@ -68,7 +72,7 @@
 
   <hr>
   <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
-  <div class="container" style="margin-top: 5%;">
+  <div class="container">
 
 {% for comment in post.comments.all %}
 

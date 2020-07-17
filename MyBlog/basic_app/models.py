@@ -13,6 +13,8 @@ class Post(models.Model):
     text_2=models.TextField(default="")
     blog_pic_3=models.ImageField(upload_to='blog_pics/',blank=True)
     text_3=models.TextField(default="")
+    tag_1=models.CharField(max_length=256,blank=True)
+    tag_2=models.CharField(max_length=256,blank=True)
     create_date=models.DateTimeField(default=timezone.now())
     published_date=models.DateTimeField(blank=True,null=True)
     # blog_pic=models.ImageField(upload_to='blog_pics/',blank=True,default='blog_pics/django-logo-negative.png')
