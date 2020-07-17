@@ -8,13 +8,6 @@
         {% if post.blog_pic_1 %}
           <a href="{% url 'post_detail' pk=post.pk %}" class="stretched-link"><img class="card__image"  src="{{ post.blog_pic_1.url }}" alt=""></a>
         {% endif %}
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 1db549edff7f43e992a5f1e3bc4c52dfe68c4830
->>>>>>> Stashed changes
         <div class="row" style="margin-left: 0px;margin-right: 0px;">
           {% if post.tag_1 %}
           <span style="background: #D47FA6;border-radius: 20px;padding: 0px 4px;margin: 2%;display: inline-block;color: white;font-size: 0.9rem;">#{{post.tag_1}}</span>
@@ -23,14 +16,7 @@
           <span style="background: #D47FA6;border-radius: 20px;padding: 0px 4px;margin: 2%;display: inline-block;color: white;font-size: 0.9rem;">#{{post.tag_2}}</span>
         {% endif %}
         </div>
-<<<<<<< Updated upstream
-       
-=======
-<<<<<<< HEAD
-=======
-       
->>>>>>> 1db549edff7f43e992a5f1e3bc4c52dfe68c4830
->>>>>>> Stashed changes
+
         <div class="card__content">
           <h3 style="font-family: 'Archivo', sans-serif;font-size:  28px; text-align: center;">
             {{ post.title }}
