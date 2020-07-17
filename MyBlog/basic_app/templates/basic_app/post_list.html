@@ -9,10 +9,10 @@
           <a href="{% url 'post_detail' pk=post.pk %}" class="stretched-link"><img class="card__image"  src="{{ post.blog_pic_1.url }}" alt=""></a>
         {% endif %}
         {% if post.tag_1 %}
-          <p>{{post.tag_1}}</p>
+          <p style="background: #F5F5F5;border:2px black solid ;border-radius: 20px;width: 50%;margin-left: 25%;padding: 4px;margin-top: 2%;">#{{post.tag_1}}</p>
         {% endif %}
         {% if post.tag_2 %}
-          <p>{{post.tag_2}}</p>
+          <p style="background: #F5F5F5;border:2px black solid;border-radius: 20px;width: 50%;margin-left: 25%;padding: 4px;">#{{post.tag_2}}</p>
         {% endif %}
         <div class="card__content">
           <h3 style="font-family: 'Archivo', sans-serif;font-size:  28px; text-align: center;">
