@@ -64,13 +64,10 @@
         </div>
 
       {% if user.is_authenticated %}
-<<<<<<< HEAD
-          <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-          <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-=======
-          <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">EDIT</span></a>
-          <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">DELETE</span></a>
->>>>>>> 2997010d85496d86a58059ba567e64bfb8b9913d
+
+          <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">EDIT</a>
+          <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">DELETE</a>
+
       {% endif %}
 
 

@@ -8,19 +8,15 @@
         {% if post.blog_pic_1 %}
           <a href="{% url 'post_detail' pk=post.pk %}" class="stretched-link"><img class="card__image"  src="{{ post.blog_pic_1.url }}" alt=""></a>
         {% endif %}
-        {% if post.tag_1 %}
-<<<<<<< HEAD
-          <p>{{post.tag_1}}</p>
+
+        <div class="row" style="margin-left: 0px;margin-right: 0px;">
+          {% if post.tag_1 %}
+          <span style="background: #D47FA6;border-radius: 20px;padding: 0px 4px;margin: 2%;display: inline-block;color: white;font-size: 0.9rem;">#{{post.tag_1}}</span>
         {% endif %}
         {% if post.tag_2 %}
-          <p>{{post.tag_2}}</p>
-=======
-          <p style="background: #F5F5F5;border:2px black solid ;border-radius: 20px;width: 50%;margin-left: 25%;padding: 4px;margin-top: 2%;">#{{post.tag_1}}</p>
+          <span style="background: #D47FA6;border-radius: 20px;padding: 0px 4px;margin: 2%;display: inline-block;color: white;font-size: 0.9rem;">#{{post.tag_2}}</span>
         {% endif %}
-        {% if post.tag_2 %}
-          <p style="background: #F5F5F5;border:2px black solid;border-radius: 20px;width: 50%;margin-left: 25%;padding: 4px;">#{{post.tag_2}}</p>
->>>>>>> 2997010d85496d86a58059ba567e64bfb8b9913d
-        {% endif %}
+        </div>
         <div class="card__content">
           <h3 style="font-family: 'Archivo', sans-serif;font-size:  28px; text-align: center;">
             {{ post.title }}
