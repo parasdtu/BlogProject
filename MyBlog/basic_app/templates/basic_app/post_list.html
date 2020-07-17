@@ -1,0 +1,47 @@
+{% extends 'basic_app/base.html' %}
+
+{% block content %}
+<div class="cards" style="text-align: center;">
+    {% for post in post_list %}
+    <div class="card__container">
+      <div class="card" >
+        {% if post.blog_pic_1 %}
+          <a href="{% url 'post_detail' pk=post.pk %}" class="stretched-link"><img class="card__image"  src="{{ post.blog_pic_1.url }}" alt=""></a>
+        {% endif %}
+        {% if post.tag_1 %}
+          <p>{{post.tag_1}}</p>
+        {% endif %}
+        {% if post.tag_2 %}
+          <p>{{post.tag_2}}</p>
+        {% endif %}
+        <div class="card__content">
+          <h3 style="font-family: 'Archivo', sans-serif;font-size:  28px; text-align: center;">
+            {{ post.title }}
+          </h3>
+          <p style="font-family: 'Archivo', sans-serif;font-size: 20px;">
+            {{ post.snippet|safe|linebreaksbr }}
+          </p>
+        </div>
+        <div class="card__info">
+          <div>
+            <i class="material-icons">{{ post.published_date|date:"D M Y"}}</i>
+          </div>
+          <div>
+            <p> by- {{ post.blogger_name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- break -->
+
+        <!-- <div class="post">
+            <img src="{{ post.blog_pic.url }}" width="240">
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <div class="date">
+                <p>Published on: {{ post.published_date|date:"D M Y"}}</p>
+            </div>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
+        </div> -->
+    {% endfor %}
+{% endblock %}

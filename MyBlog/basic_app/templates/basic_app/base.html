@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Blog Project</title>
+        <!-- Latest compiled and minified CSS -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+
+        <!-- {# MEDIUM STYLE EDITOR#} -->
+        <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+
+
+
+        <!-- {# Custom CSS#} -->
+        <!-- <link rel="stylesheet" href="{% static 'css/blog.css' %}"> -->
+
+        <!-- {# Fonts#} -->
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- Css files -->
+        <link rel="stylesheet" href="{% static 'css/new_style.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'css/cards_style.css' %}"> -->
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+    <style>
+        .navbar {
+  position: fixed;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+
+}
+
+.navbar > .container,
+.navbar > .container-fluid {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.navbar-brand:hover, .navbar-brand:focus {
+  text-decoration: none;
+}
+
+.navbar-nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.navbar-nav .nav-link {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.navbar-nav .dropdown-menu {
+  position: static;
+  float: none;
+}
+
+.navbar-text {
+  display: inline-block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.navbar-collapse {
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.navbar-toggler {
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.navbar-toggler:hover, .navbar-toggler:focus {
+  text-decoration: none;
+}
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  content: "";
+  background: no-repeat center center;
+  background-size: 100% 100%;
+}
+
+@media (max-width: 575.98px) {
+  .navbar-expand-sm > .container,
+  .navbar-expand-sm > .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .navbar-expand-sm {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+  .navbar-expand-sm .navbar-nav {
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+  .navbar-expand-sm .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+  .navbar-expand-sm .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .navbar-expand-sm > .container,
+  .navbar-expand-sm > .container-fluid {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+  .navbar-expand-sm .navbar-collapse {
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+  .navbar-expand-sm .navbar-toggler {
+    display: none;
+  }
+}
+
+
+
+
+@media (max-width: 767.98px) {
+  .navbar-expand-md > .container,
+  .navbar-expand-md > .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-expand-md {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+  .navbar-expand-md .navbar-nav {
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+  .navbar-expand-md .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+  .navbar-expand-md .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .navbar-expand-md > .container,
+  .navbar-expand-md > .container-fluid {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+  .navbar-expand-md .navbar-collapse {
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+  .navbar-expand-md .navbar-toggler {
+    display: none;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navbar-expand-lg > .container,
+  .navbar-expand-lg > .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+  .navbar-expand-lg .navbar-nav {
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+  .navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .navbar-expand-lg > .container,
+  .navbar-expand-lg > .container-fluid {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+  .navbar-expand-lg .navbar-collapse {
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+  .navbar-expand-lg .navbar-toggler {
+    display: none;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .navbar-expand-xl > .container,
+  .navbar-expand-xl > .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-expand-xl {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+  .navbar-expand-xl .navbar-nav {
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+  .navbar-expand-xl .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+  .navbar-expand-xl .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .navbar-expand-xl > .container,
+  .navbar-expand-xl > .container-fluid {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+  .navbar-expand-xl .navbar-collapse {
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+  .navbar-expand-xl .navbar-toggler {
+    display: none;
+  }
+}
+
+.navbar-expand {
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.navbar-expand > .container,
+.navbar-expand > .container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.navbar-expand .navbar-nav {
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.navbar-expand .navbar-nav .dropdown-menu {
+  position: absolute;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.navbar-expand > .container,
+.navbar-expand > .container-fluid {
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.navbar-expand .navbar-collapse {
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+}
+
+.navbar-expand .navbar-toggler {
+  display: none;
+}
+
+.navbar-light .navbar-brand {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar-light .navbar-nav .nav-link.disabled {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .nav-link.active {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-light .navbar-toggler {
+  color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-light .navbar-text {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.navbar-light .navbar-text a {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-light .navbar-text a:hover, .navbar-light .navbar-text a:focus {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-dark .navbar-brand {
+  color: #fff;
+}
+
+.navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+  color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.navbar-dark .navbar-nav .nav-link.disabled {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.navbar-dark .navbar-nav .show > .nav-link,
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #fff;
+}
+
+.navbar-dark .navbar-toggler {
+  color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-dark .navbar-text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-dark .navbar-text a {
+  color: #fff;
+}
+
+.navbar-dark .navbar-text a:hover, .navbar-dark .navbar-text a:focus {
+  color: #fff;
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+    .topnav {
+        overflow: hidden;
+        background-color: #8625d4;
+
+        }
+
+    .topnav a {
+          float: left;
+          display: block;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+
+    .topnav a:hover {
+        color: #f2f2f270;
+    }
+
+    .topnav a.active {
+        color: #f2f2f2;
+    }
+
+    .topnav .icon {
+        display: none;
+    }
+
+    .card__container{
+  margin: 1%;
+  width: 30%;
+  display: inline-block;
+}
+
+@media screen and (max-width: 768px){
+  .card__container{
+    margin: 2%;
+    width: 100%;
+    display: block;
+  }
+
+}
+
+.columns{
+  text-align: center;
+  color: white;
+  margin-bottom: 0px;
+}
+
+@media (min-width: 768px) {
+  .columns{
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;}
+}
+.loader{
+    overflow-x: hidden;
+}
+    @media screen and (max-width: 600px) {
+        .topnav a:not(:first-child) {display: none;}
+        .topnav a.icon {
+            float: right;
+            display: block;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .topnav.responsive {position: relative;}
+        .topnav.responsive .icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .topnav.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+    }
+</style>
+
+
+    <body class='loader'>
+        <nav style="background: purple;" class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+
+    <!-- Text Logo - Use this if you don't have a graphic logo -->
+      <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Leno</a> -->
+
+      <!-- Image Logo -->
+      <a class="navbar-brand logo-image" href="{% url 'post_list' %}"><img src="{% static "logos/logo.png" %}" style="width: 50%;height: auto;" alt="alternative"></a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-awesome fas fa-bars"></span>
+        <span class="navbar-toggler-awesome fas fa-times"></span>
+      </button>
+      <!-- end of mobile menu toggle button -->
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="{% url 'post_list' %}"
+              >HOME <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="{% url 'about'%}">ABOUT</a>
+          </li>
+          {% if user.is_authenticated %}
+          <a class="nav-link" href="{% url 'post_new' %}">NEW POST</a>
+          <a class="nav-link" href="{% url 'post_draft_list' %}">DRAFTS</a>
+          <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+          <a class="nav-link">WELCOME: {{ user.username }}</a>
+
+          {% else %}
+          <a class="nav-link" href="{% url 'login' %}">
+              LOGIN
+          </a>
+          {% endif %}
+
+          <!-- Dropdown Menu -->
+          <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle page-scroll" href="#details" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">DETAILS</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">TERMS CONDITIONS</span></a>
+                        <div class="dropdown-items-divide-hr"></div>
+                        <a class="dropdown-item" href="privacy-policy.html"><span class="item-text">PRIVACY POLICY</span></a>
+                    </div>
+                </li> -->
+          <!-- end of dropdown menu -->
+
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="#contact">CONTACT</a>
+          </li>
+        </ul>
+        <span class="nav-item social-icons">
+          <span class="fa-stack" style="text-align: center;">
+            <a href="https://m.facebook.com/InCampus.in/">
+              <img src="{% static "logos/facebook.png" %}" style="width: 55%;height: auto;vertical-align: sub;" alt="">
+            </a>
+          </span>
+          <span class="fa-stack" style="text-align: center;">
+            <a href="https://www.linkedin.com/company/incampusinc/about/">
+                <img src="{% static "logos/linkedin.png" %}" style="width: 55%;height: auto;vertical-align: sub;" alt="">
+            </a>
+          </span>
+        </span>
+      </div>
+    </nav>
+
+    <!-- <div class="topnav" id="myTopnav">
+        <a class="navbar-brand" href="#">
+            <img src="../../../media/white-logo.png" height="50" width="100" class="image-fluid">
+        </a>
+
+        <a class="active" href="{% url 'post_list' %}">Home</a>
+        <a class="nav-link" href="{% url 'about'%}">About</a>
+
+        {% if user.is_authenticated %}
+        <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
+        <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        <a class="nav-link">Welcome: {{ user.username }}</a>
+
+        {% else %}
+        <a class="nav-tag" href="{% url 'login' %}">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+        {% endif %}
+
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+           <span class="fa fa-bars"></span>
+        </a>
+    </div> -->
+
+
+    <script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+
+
+
+<!--<nav class="navbar bg-dark navbar-dark navbar-expand-sm">-->
+<!--        <div class="container">-->
+
+<!--            <a class="navbar-brand" href="#">-->
+<!--                <img src="../../../media/white-logo.png" height="50" width="100" class="image-fluid">-->
+<!--            </a>-->
+
+<!--            <button class="navbar-toggler bg-success" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
+
+<!--            <div class="collapse navbar-collapse" id="navbar">-->
+<!--                <ul class="navbar-nav">-->
+<!--                    <li class="nav-item active">-->
+<!--                       <a class="nav-link" href="{% url 'post_list' %}">Home</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                       <a class="nav-link" href="{% url 'about'%}">About</a>-->
+<!--                    </li>-->
+
+<!--                    {% if user.is_authenticated %}-->
+<!--                    <li class="nav-item">-->
+<!--                       <a class="nav-link" href="{% url 'post_new' %}">New Post</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                       <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                       <a class="nav-link" href="{% url 'logout' %}">Logout</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                       <a class="nav-link">Welcome: {{ user.username }}</a>-->
+<!--                    </li>-->
+
+<!--                    {% else %}-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-tag" href="{% url 'login' %}">-->
+<!--                            <span class="glyphicon glyphicon-user"></span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    {% endif %}-->
+
+<!--                </ul>-->
+<!--            </div>-->
+
+<!--  </div>-->
+<!--</nav>-->
+
+    <!--<nav class="navbar bg-dark navbar-dark navbar-expand-sm fixed-top">-->
+    <!--     <div class="container">-->
+    <!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">-->
+    <!--            <span class="navbar-toggler-icon"></span>-->
+    <!--        </button>-->
+    <!--        <a class="navbar-brand mr-auto" href="#">Logo-->
+    <!--            <img src="img/logo.png" height="30" width="41" class="image-fluid">-->
+    <!--        </a>-->
+
+    <!--        <div class="collapse navbar-collapse" id="navbarToggleExternalContent">-->
+                <!--<ul class="navbar-nav mr-auto">-->
+                <!--    <li class="nav-item">-->
+                <!--       <a class="nav-link active"href="{% url 'post_list' %}">Home</a>-->
+                <!--    </li>-->
+                <!--    <li class="nav-item">-->
+                <!--       <a class="nav-link" href="{% url 'about'%}">About</a>-->
+                <!--    </li>-->
+
+                <!--    {% if user.is_authenticated %}-->
+                <!--    <li class="nav-item">-->
+                <!--       <a class="nav-link" href="{% url 'post_new' %}">New Post</a>-->
+                <!--    </li>-->
+                <!--    <li class="nav-item">-->
+                <!--       <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>-->
+                <!--    </li>-->
+                <!--    <li class="nav-item">-->
+                <!--       <a class="nav-link" href="{% url 'logout' %}">Logout</a>-->
+                <!--    </li>-->
+                <!--    <li class="nav-item">-->
+                <!--       <a class="nav-link">Welcome: {{ user.username }}</a>-->
+                <!--    </li>-->
+
+                <!--    {% else %}-->
+                <!--    <li class="nav-item">-->
+                <!--        <a class="nav-tag" href="{% url 'login' %}">-->
+                <!--            <span class="glyphicon glyphicon-user"></span>-->
+                <!--        </a>-->
+                <!--    </li>-->
+                <!--    {% endif %}-->
+
+                <!--</ul>-->
+    <!--        </div>-->
+    <!--     </div>-->
+    <!--</nav>-->
+
+
+  <!--<nav>-->
+  <!--  <input type="checkbox" id="check">-->
+  <!--  <label for="check" class="checkbtn">-->
+  <!--    <i class="fas fa-bars"></i>-->
+  <!--  </label>-->
+  <!--  <label class="logo">InCampus</label>-->
+  <!--  <img src="../../../media/" alt="">-->
+  <!--  <ul>-->
+  <!--    <li><a class="nav-tag" class="active" href="{% url 'post_list' %}" style="text-decoration: none;">Home</a></li>-->
+  <!--    <li><a class="nav-tag" href="{% url 'about'%}" style="text-decoration: none;">About</a></li>-->
+  <!--    {% if user.is_authenticated %}-->
+  <!--    <li><a class="nav-tag" href="{% url 'post_new' %}" style="text-decoration: none;">New Post</a></li>-->
+  <!--    <li><a class="nav-tag" href="{% url 'post_draft_list' %}" style="text-decoration: none;">Drafts</a></li>-->
+  <!--    <li><a class="nav-tag" href="{% url 'logout' %}" style="text-decoration: none;">Logout</a></li>-->
+  <!--    <li>-->
+  <!--      <a class="nav-tag" style="text-decoration: none;">Welcome: {{ user.username }}</a>-->
+  <!--    </li>-->
+  <!--    {% else %}-->
+  <!--    <li><a class="nav-tag" href="{% url 'login' %}" style="text-decoration: none;"><span-->
+  <!--          class="glyphicon glyphicon-user"></span></a></li>-->
+  <!--    {% endif %}-->
+  <!--  </ul>-->
+  <!--</nav>-->
+
+  {# The actual blog posts#}
+    <section class="sectionC">
+      <div class="row justify-content-center">
+       <div class="container content fluid-container" style="padding-left: 5% !important;padding-right: 5% !important;margin-left: 0px !important;margin-right: 0px !important;">
+            <div class="row">
+                <div class="col-12 col-md-12 ">
+                  <div class="blog_posts">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+<!-- {# SCRIPTS#} -->
+
+<!-- <script type="text/javascript" src="{% static 'js/blog.js' %}"></script> -->
+<!-- FOOTER -->
+
+<!--<footer>-->
+<!--      <div class="main-content">-->
+<!--        <div class="left box">-->
+<!--          <h2>About us</h2>-->
+<!--<div class="content"><p>-->
+<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>-->
+<!--  <div class="social">-->
+<!--    <a href="#"><span class="fab fa-facebook-f"></span></a>-->
+<!--    <a href="#"><span class="fab fa-twitter"></span></a>-->
+<!--    <a href="#"><span class="fab fa-instagram"></span></a>-->
+<!--    <a href="#"><span class="fab fa-youtube"></span></a>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="center box">-->
+<!--          <h2>Address</h2>-->
+<!--<div class="content">-->
+<!--            <div class="place">-->
+<!--              <span class="fas fa-map-marker-alt"></span>-->
+<!--              <span class="text">India, Delhi</span>-->
+<!--            </div>-->
+<!--<div class="phone">-->
+<!--              <span class="fas fa-phone-alt"></span>-->
+<!--              <span class="text">+91-7838980506</span>-->
+<!--            </div>-->
+<!--<div class="email">-->
+<!--              <span class="fas fa-envelope"></span>-->
+<!--              <span class="text">incampus@gmail.com</span>-->
+<!--            </div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="right box">-->
+<!--<h2>Contact us</h2>-->
+<!--<div class="content">-->
+<!--            <form action="#">-->
+<!--              <div class="email">-->
+<!--                <div class="text">Email *</div>-->
+<!--<input type="email" required>-->
+<!--</div>-->
+<!--<div class="msg">-->
+<!--<div class="text">Message *</div>-->
+<!--<textarea id=".msgForm" rows="2" cols="25" required></textarea> <!-- changeit name to textarea -->
+
+<!--<br />-->
+<!--<div class="bton">-->
+<!--<button type="submit">Send</button>-->
+<!--</div>-->
+<!--<div class="bottom">-->
+<!--<center>-->
+<!--          <span class="credit">Created By <a href="https://incampus.me">InCampus</a> | </span>-->
+<!--          <span class="far fa-copyright"></span> 2020 All rights reserved.-->
+<!--        </center>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</footer>-->
+ <div class="footer" style="background-color: purple;padding-left: 3%;padding-right: 3%;">
+
+      <div class="container">
+        <div class="row" style="padding: 4%;">
+          <div class="col-md-4 col-sm-12" style="text-align: center;color: white;">
+            <div class="footer-col">
+              <h4>About Incampus</h4>
+              <p>
+                InCampus © To unite like-minded people across different
+                universities and to provide them with limitless opportunities
+                and endless knowledge
+              </p>
+            </div>
+          </div>
+          <!-- end of col -->
+          <div class="col-md-4 col-sm-12" style="text-align: center;color: white;">
+            <div class="footer-col middle">
+              <h4>Important Links</h4>
+              <ul class="list-unstyled li-space-lg">
+                <li class="media">
+                  <!--<i class="fas fa-square"></i>-->
+                  <div class="media-body">
+                    Join the Team
+                    <a
+                      class="turquoise"
+                      href="https://docs.google.com/forms/d/1p56jnGF-EFewDqvrl9fPqW7vIfrlhPi350fjrbeZxQo/viewform?edit_requested=true"
+                      >googleform link</a
+                    >
+                  </div>
+                </li>
+                <!--
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Read our <a class="turquoise" href="terms-conditions.html">Terms & Conditions</a>, <a class="turquoise" href="privacy-policy.html">Privacy Policy</a></div>
+                            </li>
+-->
+              </ul>
+            </div>
+          </div>
+          <!-- end of col -->
+          <div class="col-md-4 col-sm-12" style="text-align: center;color: white;">
+            <div class="footer-col last">
+              <h4>Social Media</h4>
+              <span class="fa-stack" style="margin-right: 20px;">
+                <a href="https://m.facebook.com/InCampus.in/">
+                  <img src="{% static "logos/facebook.png" %}" style="width: 70%;height: auto;" alt="">
+                </a>
+              </span>
+              <!--
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x"></i>
+                            </a>
+                        </span>
+-->
+              <!--
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-google-plus-g fa-stack-1x"></i>
+                            </a>
+                        </span>
+-->
+              <span class="fa-stack" style="margin-right: 20px;">
+                <a href="https://www.instagram.com/official_incampus/">
+                  <img src="{% static "logos/instagram.png" %}" style="width: 70%;height: auto;" alt="">
+                </a>
+              </span>
+              <span class="fa-stack" style="margin-right: 20px;">
+                <a href="https://www.linkedin.com/company/incampusinc/about/">
+                  <img src="{% static "logos/linkedin.png" %}" style="width: 70%;height: auto;" alt="">
+              </a>
+              </span>
+            </div>
+          </div>
+          <!-- end of col -->
+        </div>
+        <!-- end of row -->
+      </div>
+      <!-- end of container -->
+    </div>
+    <!-- end of footer -->
+    <!-- end of footer -->
+
+</body>
+</html>

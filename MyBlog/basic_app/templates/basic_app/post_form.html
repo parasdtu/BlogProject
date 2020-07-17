@@ -1,0 +1,20 @@
+{% extends 'basic_app/base.html' %}
+
+{% block content %}
+    <h1>New post</h1>
+
+    <form method="POST" class="post-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="field">
+        <label for="{{ field.id_for_label }}" class="label" style="background-color: powderblue;">{{ field.html_name }}</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+    <!-- {{form.as_p}} -->
+    <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+    <script>var editor = new MediumEditor('.editable');</script>
+
+{% endblock %}

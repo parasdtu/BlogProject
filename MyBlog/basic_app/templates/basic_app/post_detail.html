@@ -1,0 +1,104 @@
+{% extends 'basic_app/base.html' %}
+{% load staticfiles %}
+{% block content %}
+  <style>
+
+  .postHeader{
+        font-family: 'Archivo',sans-serif;
+        font-size: 45px;
+        text-align: left;
+    }
+
+  .image{
+        width: 100%;
+        /*min-height: 400px;*/
+        height:auto;
+        object-fit: cover;
+        display: block;
+        margin:20px 0px;
+  }
+
+  .postText {
+        font-size: 20px;
+  }
+
+ .blogPost p{
+      /*font-family: 'Georgia', serif;*/
+      font-family:medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
+      font-size:21px;
+      line-height:32px;
+      margin-bottom:5vh;
+  }
+
+
+  </style>
+        <h1 class="posttitle loader postHeader" style="text-align: center; vertical-align: middle;">{{ post.title }}</h1>
+
+        {% if post.published_date %}
+            <div class="date postdate" style="font-family: 'Archivo', sans-serif;">
+            </div>
+
+        {% else %}
+            <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+        {% endif %}
+        <img class="image" src="{{ post.blog_pic_1.url }}">
+        {% if post.published_date %}
+            <div class="date postdate" style="font-family: 'Archivo', sans-serif;">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+        <div class="blogPost">
+            <p class='postcontent postText font-weight-normal'>{{ post.text_1|safe|linebreaksbr }}</p>
+        </div>
+        {% if post.blog_pic_2 %}
+          <img class="image" src="{{ post.blog_pic_2.url }}">
+        {% endif %}
+        <div class="blogPost">
+            <p class='postcontent postText font-weight-normal'>{{ post.text_2|safe|linebreaksbr }}</p>
+        </div>
+        {% if post.blog_pic_3 %}
+          <img class="image" src="{{ post.blog_pic_3.url }}">
+        {% endif %}
+        <div class="blogPost">
+            <p class='postcontent postText font-weight-normal'>{{ post.text_3|safe|linebreaksbr }}</p>
+        </div>
+
+      {% if user.is_authenticated %}
+          <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+          <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+      {% endif %}
+
+
+
+  <hr>
+  <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+  <div class="container">
+
+{% for comment in post.comments.all %}
+
+<h5>Posted by: <strong>{{ comment.author }}</strong></h5>
+<p>{{ comment.text|safe|linebreaks }}</p>
+
+{% endfor %}
+
+  {% for comment in post.comments.all %}
+  <br>
+
+      {% if user.is_authenticated or comment.approved_comment %}
+
+              {{ comment.created_date }}
+              {% if not comment.approved_comment %}
+                  <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                  <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+              {% endif %}
+
+          <p>{{ comment.text|safe|linebreaks }}</p>
+          <p>Posted by: <strong>{{ comment.author }}</strong></p>
+
+      {% endif %}
+  {% empty %}
+      <p>No comments posted.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}
