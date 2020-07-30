@@ -7,7 +7,7 @@ class Post(models.Model):
     author=models.ForeignKey('auth.User',on_delete=models.CASCADE)
     title=models.CharField(max_length=256)
     blogger_name=models.CharField(max_length=256,default="BloggerName")
-    blog_pic_1=models.ImageField(upload_to='blog_pics/',blank=True,default='blog_pics/django-logo-negative.png')
+    blog_pic_1=models.ImageField(upload_to='blog_pics/',blank=True,default='blog_pics/django-logo-negative.png',null=True)
     text_1=models.TextField(blank=True,null=True)
     blog_pic_2=models.ImageField(upload_to='blog_pics/',blank=True)
     text_2=models.TextField(blank=True,null=True)
