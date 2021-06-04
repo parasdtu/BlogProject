@@ -7,7 +7,7 @@ chardet==3.0.4
 coverage==5.0.2
 coveralls==1.10.0
 cryptography==3.2
-Django==2.2.13
+Django==2.2.21
 django-model-utils==4.0.0
 django-netjsonconfig==0.8.1
 django-reversion==2.0.13
